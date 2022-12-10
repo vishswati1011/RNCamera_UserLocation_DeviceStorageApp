@@ -1,5 +1,6 @@
+import PlaceList from  '../components/Place/PlacesList'
 function AllPlaces() {
   
-    return <PlaceList />
+    return (<PlaceList />)
 }
 export default AllPlaces;
