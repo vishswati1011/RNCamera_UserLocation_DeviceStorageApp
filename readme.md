@@ -7,3 +7,35 @@ Storing Data on the Device
 
 camera react-native-image-picker  
 res:   https://www.turing.com/kb/how-to-build-a-react-native-camera-app
+
+
+react native library 
+npm i react-native-geolocation-service
+link for more details https://github.com/Agontuk/react-native-geolocation-service/blob/master/docs/setup.md
+
+use example folder for code write
+
+Add Google map key in AndroidManifest.xml
+
+How to Right Meta Data In AndroidManifest.xml
+
+<!-- <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+
+      <meta-data
+      android:name="com.google.android.geo.API_KEY" 
+      android:value="Your API Key add here"/>-->
+
+add permission alos in AndroidManifest.xml
+
+  <!-- <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+   
+
+
+
