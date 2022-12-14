@@ -1,10 +1,10 @@
-class Place {
+export class Place {
 
-    Constructor (title,imageUri,address,location) {
+    Constructor (title,imageUri,location) {
     this.title=title;
     this.imageUri=imageUri;
-    this.address=address;
-    this.location=location;
+    this.address=location.address;
+    this.location={lat:location.lat,lng:location.lng};
     this.id=id= new Date().toString()+Math.random().toString();
     }
     

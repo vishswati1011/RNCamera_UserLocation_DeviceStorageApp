@@ -35,6 +35,19 @@ add permission alos in AndroidManifest.xml
 
   <!-- <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+
+
+udemy 209 video no
+Translate Address to coordinate and coordinate to address
+
+we have geocoding api Google map Platform
+first we need to enable it
+1.go to Google Map Platform 
+2.map api and services 
+3. enable geocoding api 
+
+using the map key we can also get map priview
+
    
 
 

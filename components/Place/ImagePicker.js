@@ -4,7 +4,7 @@ import { View,Image ,Alert,StyleSheet,Text} from "react-native";
 import * as ImagePicker from "react-native-image-picker";
 import { Colors } from "../constants/Colors";
 import OutlinedButton from "../UI/OutlinedButton";
-function ImagePickerPopup() {
+function ImagePickerPopup({onTakeImage}) {
 
 const [filePath,setfilePath]=useState()
 const [fileData,setfileData]=useState([])
@@ -48,13 +48,12 @@ const launchCamera = async() => {
       alert(response.customButton);
     } else {
       const source = { uri: response.uri };
-      console.log('response.assets====', response.assets);
-      console.log('response======', response.assets[0].uri);
-      console.log('response=============', response);
+      console.log('response.assets====', response.assets[0].uri);
       if(response){
       setfilePath(response)
       setfileData(response.assets)
       setfileUri(response.assets[0].uri);
+      onTakeImage(response.assets[0].uri)
       }
     }
   });

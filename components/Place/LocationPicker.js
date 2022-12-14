@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {Colors} from '../constants/Colors';
 import Geolocation from 'react-native-geolocation-service';
 import { useNavigation,useRoute,useIsFocused } from "@react-navigation/native";
-
+import { getAddress } from "../../util/location";
 // Function to get permission for location
 const requestLocationPermission = async () => {
     try {
@@ -30,7 +30,7 @@ const requestLocationPermission = async () => {
       return false;
     }
   };
-function LocationPicker () {
+function LocationPicker ({onPickLocation}) {
 
   const [location, setLocation] = useState(false);
   const navigation =useNavigation()
@@ -38,29 +38,38 @@ function LocationPicker () {
   const isFocused =useIsFocused();
    
  
-  console.log("maplocation",route.params)
   useEffect (()=>{
     if(isFocused && route.params){
       const mapPickedLocation = {
         lat:route.params.pickedLat,
         lng:route.params.pickedLng
       }
-        setLocation(mapPickedLocation);
-    console.log("-----------",mapPickedLocation)
-      
+        setLocation(mapPickedLocation);      
     }
-   
   },[route,isFocused])
+
+  useEffect (()=>{
+    async function handlelocation () {
+    if(location){
+      // const address = await getAddress(location.lat,location.lng)
+      // onPickLocation({...location,address})
+
+      onPickLocation(location)
+    }
+  }
+  handlelocation();
+  },[location,onPickLocation])
     // function to check permissions and get Location
   const getLocation = () => {
     const result = requestLocationPermission();
     result.then(res => {
-      console.log('res is:', res);
       if (res) {
         Geolocation.getCurrentPosition(
           position => {
-            console.log("position",position);
-            setLocation(position);
+            console.log("postion picked",position)
+            setLocation({
+              lat:position.coords.latitude,
+              lng:position.coords.longitude});
           },
           error => {
             // See error code charts below.
@@ -71,13 +80,13 @@ function LocationPicker () {
         );
       }
     });
-    console.log("location",location);
   };
 
 
     function pickupMapHandler(){
         navigation.navigate("Map");
     }
+   
     return(
         <View>
             {location?<View style={styles.mapPreview}>

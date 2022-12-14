@@ -11,19 +11,18 @@ function Map ({navigation}){
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
     });
- 
+    
     const selectLocationHandler =(event)=>{
-        console.log("event",event)
         setSelectedLocation({
             latitude:event.latitude,
             longitude:event.longitude,
             latitudeDelta: event.latitudeDelta,
             longitudeDelta: event.longitudeDelta,
-        })
+        },console.log("selectedLocation",selectedLocation))
     }
     
     // const savePickedLocationHandler = useCallback(() =>{
-    const savePickedLocationHandler = (location) =>{
+    const savePickedLocationHandler = useCallback(() =>{
 
         if(!selectedLocation){
             Alert.alert(
@@ -32,22 +31,22 @@ function Map ({navigation}){
             );
             return;
         }else{
-            console.log("save",location)
         navigation.navigate('AddPlace',{
-            pickedLat:location.latitude,
-            pickedLng:location.longitude
+            pickedLat:selectedLocation.latitude,
+            pickedLng:selectedLocation.longitude
         });
     }
-    };
-
+    },[navigation,selectedLocation]);
     useLayoutEffect( () => {
         navigation.setOptions({
-            headerRight:({tintColor})=>(<IconButton icon="save" size={24} 
-                color={tintColor} onPress={()=>savePickedLocationHandler(selectedLocation)}
+            headerRight : ({tintColor}) => 
+            (<IconButton icon="save" size={24} 
+                color={tintColor} 
+                onPress={savePickedLocationHandler}
             />
             )
         });
-    },[])
+    },[navigation,savePickedLocationHandler])
     return (
     <MapView  style={styles.map} initialRegion={selectedLocation} 
     onRegionChangeComplete={(region)=>selectLocationHandler(region)}
