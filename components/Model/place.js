@@ -1,6 +1,6 @@
 export class Place {
 
-    Constructor (title,imageUri,location) {
+    constructor(title,imageUri,location) {
     this.title=title;
     this.imageUri=imageUri;
     this.address=location.address;
