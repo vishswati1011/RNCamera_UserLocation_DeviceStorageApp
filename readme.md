@@ -31,13 +31,11 @@ How to Right Meta Data In AndroidManifest.xml
       android:name="com.google.android.geo.API_KEY" 
       android:value="Your API Key add here"/>-->
 
-add permission alos in AndroidManifest.xml
+add permission also in AndroidManifest.xml
 
   <!-- <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
 
-
-udemy 209 video no
 Translate Address to coordinate and coordinate to address
 
 we have geocoding api Google map Platform
